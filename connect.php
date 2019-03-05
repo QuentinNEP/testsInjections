@@ -1,16 +1,27 @@
 <?php
 
-$bdd = mysqli_connect("localhost", "root", "", "injections");
+$bdd = new PDO('mysql:host=localhost;dbname=injection;charset=utf8', 'root', '');
 
-$user = $_GET['user'];
-$pwd = $_GET['pwd'];
-
-if(isset($_GET['user']) && isset($_GET['pwd'])){
-  $requser = $bdd->prepare("SELECT * FROM membres WHERE user = ? AND pwd = ?");
-  $requser->bind_param("ss", $user, $pwd);
-  $requser->execute();
-  $userexist = $requser->num_rows();
-  
+if(isset($_GET['submit']))
+{
+  $user = $_GET['user'];
+  $pwd = $_GET['pwd']
+	if(!empty($user) AND !empty($pwd))
+	{
+		$requser = $bdd->prepare("SELECT * FROM membres WHERE user = ? AND pwd = ?");
+		$requser->execute(array($user, $pwd));
+		$userexist = $requser->rowCount();
+		if($userexist == 1)
+		{
+      echo"good";
+		}
+		else{
+			echo ": Incorrect password or username";
+		}
+	}
+	else{
+		echo ": Veuillez remplir tous les champs";
+	}
 }
  ?>
 
