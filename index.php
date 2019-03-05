@@ -1,7 +1,7 @@
 
 <?php
 
-$bdd = new PDO('mysql:host=localhost;dbname=test;charset=utf8', 'root', '');
+$bdd = new PDO('mysql:host=localhost;dbname=injections;charset=utf8', 'root', '');
 
 $list_nom = $bdd->query('SELECT user FROM membres');
 $list_nom->fetch()['user'];
@@ -37,38 +37,38 @@ if (isset($_GET['submit']))
 
 									$insertmbr = $bdd->prepare("INSERT INTO membres(user, pwd) VALUES(?, ?)");
                 	$insertmbr->execute(array($user, $pwd));
-                	echo ": Votre compte a bien été créé ! <a href=\"login.php\">Me connecter</a>";
+                	echo "Votre compte a bien été créé ! ";
 								}
 								else{
-									echo ": Username déja utilisé";
+									echo "Username déja utilisé";
 								}
 							}
 							else{
-								echo ": Votre mot de passe est trop long";
+								echo "Votre mot de passe est trop long";
 							}
 						}
 						else{
-							echo ": Votre mot de passe est trop court";
+							echo "Votre mot de passe est trop court";
 						}
 					}
 					else{
-						echo ": Votre pseudo est trop court";
+						echo "Votre pseudo est trop court";
 					}
 				}
 				else{
-					echo ": Votre pseudo est trop long";
+					echo "Votre pseudo est trop long";
 				}
 			}
 			else{
-				echo ": Le mot de passe doit être différent du pseudo.";
+				echo "Le mot de passe doit être différent du pseudo.";
 			}
 	}
 	else {
-		echo ": Veuillez remplir tous les champs";
+		echo "Veuillez remplir tous les champs";
 
 	}
 }
-}
+
 
  ?>
 

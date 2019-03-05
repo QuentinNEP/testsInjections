@@ -1,11 +1,11 @@
 <?php
 
-$bdd = new PDO('mysql:host=localhost;dbname=injection;charset=utf8', 'root', '');
+$bdd = new PDO('mysql:host=localhost;dbname=injections;charset=utf8', 'root', '');
 
 if(isset($_GET['submit']))
 {
   $user = $_GET['user'];
-  $pwd = $_GET['pwd']
+  $pwd = $_GET['pwd'];
 	if(!empty($user) AND !empty($pwd))
 	{
 		$requser = $bdd->prepare("SELECT * FROM membres WHERE user = ? AND pwd = ?");
